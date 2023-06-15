@@ -1,20 +1,22 @@
 class Solution {
-        public int maxEvents(int[][] events) {
-        Arrays.sort(events, (a, b) -> a[0] - b[0]); // sort events increasing by start time
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        int ans = 0, i = 0, n = events.length;
+    public int maxEvents(int[][] events) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        Arrays.sort(events, (a, b) -> a[0] - b[0]);
+        int i = 0, result = 0, n = events.length;
+
         for (int d = 1; d <= 100000; d++) {
-            while (i < n && events[i][0] == d) { // Add new events that can attend on day `d`
-                minHeap.add(events[i++][1]);
+            while (i < n && events[i][0] == d) {
+                pq.offer(events[i][1]);
+                i++;
             }
-            while (!minHeap.isEmpty() && minHeap.peek() < d) { // Remove events that are already closed
-                minHeap.poll();
+            if (!pq.isEmpty()) {
+                pq.poll();
+                result++;
             }
-            if (!minHeap.isEmpty()) { // Use day `d` to attend to the event that closes earlier
-                ans++;
-                minHeap.poll();
+            while (!pq.isEmpty() && pq.peek() <= d) {
+                pq.poll();
             }
         }
-        return ans;
+        return result;
     }
 }
