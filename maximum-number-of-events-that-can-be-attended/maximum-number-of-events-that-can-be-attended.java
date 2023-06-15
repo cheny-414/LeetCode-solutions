@@ -5,7 +5,7 @@ class Solution {
         int i = 0, result = 0, n = events.length;
 
         for (int d = 1; d <= 100000; d++) {
-            while (i < n && events[i][0] <= d) {
+            while (i < n && events[i][0] == d) {
                 pq.offer(events[i][1]);
                 i++;
             }
