@@ -20,26 +20,15 @@ class Solution {
     }
 
     private void inverse(TreeNode root) {
-        if (root == null || root.left == null && root.right == null) {
+        if (root == null) {
             return;
         }
-        if (root.left == null) {
-            root.left = root.right;
-            root.right = null;
-            inverse(root.left);
-        }
-        else if (root.right == null) {
-            root.right = root.left;
-            root.left = null;
-            inverse(root.right);
-        }
-        else {
-            TreeNode temp = root.left;
+        
+        TreeNode temp = root.left;
         root.left = root.right;
         root.right = temp;
         inverse(root.left);
         inverse(root.right);
-        }
         
     }
 }
