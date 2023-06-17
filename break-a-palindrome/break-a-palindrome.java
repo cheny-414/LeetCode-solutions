@@ -1,7 +1,6 @@
 class Solution {
     public String breakPalindrome(String palindrome) {
         int length = palindrome.length();
-        StringBuilder sb = new StringBuilder();
         if (length <= 1) return "";
         int mid = -1;
         if (length % 2 == 1) mid = (length / 2);
