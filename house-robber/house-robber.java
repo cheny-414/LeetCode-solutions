@@ -4,7 +4,7 @@ class Solution {
     
     public int rob(int[] nums) {
         
-        this.memo = new int[100];
+        this.memo = new int[nums.length];
         
         // Fill with sentinel value representing not-calculated recursions.
         Arrays.fill(this.memo, -1);
