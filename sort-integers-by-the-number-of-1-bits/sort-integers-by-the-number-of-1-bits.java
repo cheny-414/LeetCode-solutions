@@ -1,25 +1,21 @@
 class Solution {
     public int[] sortByBits(int[] arr) {
-        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> {
-            int compare = a[1] - b[1]; 
-            if (compare == 0) compare = a[0] - b[0]; 
-            return compare;});
-        for (int num : arr) {
-            String binary = Integer.toBinaryString(num);
-            int count = 0;
-            for (char i : binary.toCharArray()) {
-                if (i == '1') {
-                    count++;
-                }
+        int n = arr.length;
+        int[] answer = new int[n];
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a , b) -> {
+            if (Integer.bitCount(a) == Integer.bitCount(b)) {
+                return a - b;
+            } else {
+                return Integer.bitCount(a) - Integer.bitCount(b);
             }
-            pq.offer(new int[]{num, count});
+        });
+        for (int num : arr) {
+            pq.add(num);
         }
 
-        int[] result = new int[arr.length];
-        int i = 0;
-        while(!pq.isEmpty()) {
-            result[i++] = pq.poll()[0];
+        for (int i = 0; i < n; i++) {
+            answer[i] = pq.poll();
         }
-        return result;
+        return answer;
     }
 }
