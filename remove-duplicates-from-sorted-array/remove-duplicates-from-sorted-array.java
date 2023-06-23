@@ -3,7 +3,6 @@ class Solution {
         int n = nums.length;
         if (n == 1) return 1;
         int curr = nums[0];
-        Queue<Integer> uniques = new LinkedList<>();
         int index = 1;
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] != curr) {
