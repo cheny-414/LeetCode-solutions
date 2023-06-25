@@ -6,7 +6,6 @@ class Solution {
         int index = 1;
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] != curr) {
-                //uniques.add(nums[i]);
                 curr = nums[i];
                 nums[index++] = nums[i];
             }
