@@ -16,11 +16,9 @@ class Solution {
         int minLeft = Integer.MAX_VALUE, minRight = Integer.MAX_VALUE;
         while (right < m) {
             char cht = s.charAt(right);
-            if (map.containsKey(cht)) {
-                wMap.put(cht, wMap.getOrDefault(cht, 0) + 1);
-                if (wMap.get(cht).intValue() == map.get(cht).intValue()) {
-                    formed++;
-                }
+            wMap.put(cht, wMap.getOrDefault(cht, 0) + 1);
+            if (map.containsKey(cht) && wMap.get(cht).intValue() == map.get(cht).intValue()) {
+                formed++;
             }
             while (formed == required && left <= right) {
                 int window = right - left + 1;
@@ -30,11 +28,9 @@ class Solution {
                     minRight = right;
                 }
                 char release = s.charAt(left);
-                if (wMap.containsKey(release)) {
-                    wMap.put(release, wMap.getOrDefault(release, 0) - 1);
-                    if (wMap.get(release).intValue() < map.get(release).intValue()) {
-                        formed--;
-                    }
+                wMap.put(release, wMap.getOrDefault(release, 0) - 1);
+                if (map.containsKey(release) && wMap.get(release).intValue() < map.get(release).intValue()) {
+                    formed--;
                 }
                 left++;
             }
