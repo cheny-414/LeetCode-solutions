@@ -4,7 +4,7 @@ class Solution {
         for (String str : strs) {
             String key = getKey(str);
             if (!map.containsKey(key)) {
-                map.put(key, new ArrayList());
+                map.put(key, new ArrayList<String>());
             }
             map.get(key).add(str);
         }
