@@ -1,46 +1,29 @@
 class MinStack {
-    HashMap<Integer, Stack<Integer>> map;
-    List<Integer> list;
-    int globalMin;
+    Stack<int[]> stack;
     public MinStack() {
-        map = new HashMap<>();
-        list = new ArrayList<>();
-        globalMin = Integer.MAX_VALUE;
+        stack = new Stack<>();
     }
     
     public void push(int val) {
-        list.add(val);
-        if (!map.containsKey(val)) {
-            map.put(val, new Stack<Integer>());
+        if (stack.isEmpty()) {
+            stack.push(new int[] {val, val});
+            return;
         }
-        if (val <= globalMin) {
-            map.get(val).push(list.size() - 1);
-            globalMin = val;
-        } else {
-            map.get(val).push(map.get(list.get(list.size() - 2)).peek());
-        }
-        
+
+        int currentMin = stack.peek()[1];
+        stack.push(new int[] {val, Math.min(val, currentMin)});
     }
     
     public void pop() {
-        if (list.isEmpty()) return;
-        int val = list.get(list.size() - 1);
-        list.remove(list.size() - 1);
-        map.get(val).pop();
-
-        if (list.isEmpty()) {
-            globalMin = Integer.MAX_VALUE;
-        } else {
-            globalMin = list.get(map.get(list.get(list.size() - 1)).peek());
-        }
+        stack.pop();
     }
     
     public int top() {
-        return list.get(list.size() - 1);
+        return stack.peek()[0];
     }
     
     public int getMin() {
-        return globalMin;
+        return stack.peek()[1];
     }
 }
 
