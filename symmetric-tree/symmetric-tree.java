@@ -15,24 +15,14 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        if (root == null || (root.left == null && root.right == null)) return true;
-        if (root.left == null || root.right == null) return false;
-        inverse(root.left);
-        return identical(root.left, root.right);
+        if (root == null) return true;
+        return isSym(root.left, root.right);
     }
 
-    private void inverse(TreeNode root) {
-        if (root == null) return;
-        TreeNode temp = root.left;
-        root.left = root.right;
-        root.right = temp;
-        inverse(root.left);
-        inverse(root.right);
-    }
-
-    private boolean identical(TreeNode root1, TreeNode root2) {
-        if (root1 == null && root2 == null) return true;
-        if (root1 == null || root2 == null || root1.val != root2.val) return false;
-        return identical(root1.left, root2.left) && identical(root1.right, root2.right);
+    private boolean isSym(TreeNode t1, TreeNode t2) {
+        if (t1 == null || t2 == null) return t1 == t2;
+        return (t1.val == t2.val && 
+                isSym(t1.left, t2.right) && 
+                isSym(t1.right, t2.left));
     }
 }
