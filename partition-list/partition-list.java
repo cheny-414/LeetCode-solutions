@@ -10,7 +10,6 @@
  */
 class Solution {
     public ListNode partition(ListNode head, int x) {
-        ListNode prehead = new ListNode(0, head);
         ListNode less = new ListNode();
         ListNode lessHead = less;
         ListNode more = new ListNode();
