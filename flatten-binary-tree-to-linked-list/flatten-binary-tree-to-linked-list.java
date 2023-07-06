@@ -14,22 +14,25 @@
  * }
  */
 class Solution {
-    Deque<TreeNode> q;
     public void flatten(TreeNode root) {
-        q = new ArrayDeque<>();
-        dfs(root);
-        TreeNode node = q.poll();
-        while (!q.isEmpty()) {
-            node.left = null;
-            node.right = q.poll();
+        if (root == null) {
+            return;
+        }
+
+        TreeNode node = root;
+
+        while (node != null) {
+            if (node.left != null) {
+                TreeNode rightmost = node.left;
+                while (rightmost.right != null) {
+                    rightmost = rightmost.right;
+                }
+
+                rightmost.right = node.right;
+                node.right = node.left;
+                node.left = null;
+            }
             node = node.right;
         }
-    }
-
-    private void dfs(TreeNode root) {
-        if (root == null) return;
-        q.add(root);
-        dfs(root.left);
-        dfs(root.right);
     }
 }
