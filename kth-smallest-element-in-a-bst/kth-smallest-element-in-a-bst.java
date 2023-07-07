@@ -29,6 +29,7 @@ class Solution {
         count++;
         if (count == k) {
             kth = node.val;
+            return;
         }
         inorder(node.right);
     }
