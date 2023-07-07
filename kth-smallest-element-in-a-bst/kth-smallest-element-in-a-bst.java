@@ -15,8 +15,8 @@
  */
 class Solution {
     int count = 0;
-    int k = 0;
-    int kth = Integer.MAX_VALUE;
+    int k;
+    int kth;
     public int kthSmallest(TreeNode root, int k) {
         this.k = k;
         inorder(root);
