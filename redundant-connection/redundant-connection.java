@@ -20,7 +20,7 @@ class UnionFind {
 
     public int find(int x) {
         if (x == parent[x]) return x;
-        return find(parent[x]);
+        return parent[x] = find(parent[x]);
     }
 
     public boolean union(int u, int v) {
