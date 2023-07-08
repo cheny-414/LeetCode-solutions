@@ -59,7 +59,7 @@ class Solution {
             }
         }
 
-        visited.remove(currNode);
+        //visited.remove(currNode);
         return ret;
     }
 }
