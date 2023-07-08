@@ -8,8 +8,8 @@ class Solution {
         }
 
         for (int[] prerequisite : prerequisites) {
-            adj.get(prerequisite[1]).add(prerequisite[0]);
-            indegree[prerequisite[0]]++;
+            adj.get(prerequisite[0]).add(prerequisite[1]);
+            indegree[prerequisite[1]]++;
         }
 
         Queue<Integer> queue = new LinkedList<>();
