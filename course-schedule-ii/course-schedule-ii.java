@@ -34,7 +34,7 @@ class Solution {
             }
         }
         if (nodesVisited < numCourses) {
-            return new int[]{};
+            return new int[0];
         } else {
             return res;
         }
