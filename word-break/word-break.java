@@ -11,7 +11,7 @@ class Solution {
     }
 
     private boolean dp(int index) {
-        if (index < 0) return true;
+        if (index == -1) return true;
         if (dp[index] != 0) return dp[index] == 1;
         for (String word : wordDict) {
             if (index - word.length() + 1 >= 0 && s.substring(index - word.length() + 1, index + 1).equals(word) && dp(index - word.length())) {
