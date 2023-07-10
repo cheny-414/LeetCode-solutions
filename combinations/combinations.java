@@ -16,10 +16,9 @@ class Solution {
         }
 
         int need = k - curr.size();
-        int remain = n - firstNum + 1;
-        int available = remain - need;
+        int lastPossibleStarter = n - need + 1;
 
-        for (int num = firstNum; num <= n; num++) {
+        for (int num = firstNum; num <= lastPossibleStarter; num++) {
             curr.add(num);
             backtrack(curr, num + 1, ans);
             curr.remove(curr.size() - 1);
