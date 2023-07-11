@@ -13,6 +13,6 @@ class Solution {
             totalWait += customerWait;
             startTime += prepTime;
         }
-        return (double)totalWait * 1.0 / customers.length;
+        return totalWait * 1.0 / customers.length;
     }
 }
