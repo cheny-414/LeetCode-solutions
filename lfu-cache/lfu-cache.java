@@ -1,6 +1,6 @@
 class LFUCache {
     Map<Integer, Pair<Integer, Integer>> cache; //key, (freq and value) pair
-    Map<Integer, LinkedHashSet<Integer>> freqs;  //freq, (list of keys) with that freq
+    Map<Integer, HashSet<Integer>> freqs;  //freq, (list of keys) with that freq
     int minFreq;
     int capacity;
     public LFUCache(int capacity) {
@@ -27,7 +27,7 @@ class LFUCache {
     }
     
     public void put(int key, int value) {
-        if (capacity <= 0) return;
+        //if (capacity <= 0) return;
         if (cache.containsKey(key)) {                                   //if key exists in cache
             cache.put(key, new Pair<>(cache.get(key).getKey(), value)); //update cache with new value
             get(key);                                                   //perform get = remove + re-insert (freq + 1)
