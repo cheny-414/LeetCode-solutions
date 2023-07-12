@@ -9,10 +9,11 @@ class Solution {
         for (int i = 1; i < length; i++) {
             leftMin = Math.min(leftMin, prices[i]);
             leftProfits[i] = Math.max(leftProfits[i - 1], prices[i] - leftMin);
+        }
 
-            int r = length - i - 1;
-            rightMax = Math.max(rightMax, prices[r]);
-            rightProfits[r] = Math.max(rightProfits[r + 1], rightMax - prices[r]);
+        for (int i = length - 2; i >= 0; i--) {
+            rightMax = Math.max(rightMax, prices[i]);
+            rightProfits[i] = Math.max(rightProfits[i + 1], rightMax - prices[i]);
         }
 
         int maxProfit = 0;
