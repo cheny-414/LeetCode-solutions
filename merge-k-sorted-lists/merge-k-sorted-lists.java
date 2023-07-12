@@ -12,7 +12,7 @@ class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) return null;
         if (lists.length == 1) return lists[0];
-        //if (lists.length == 2) return merge2Lists(lists[0], lists[1]);
+        if (lists.length == 2) return merge2Lists(lists[0], lists[1]);
         return merge2Lists(mergeKLists(Arrays.copyOfRange(lists, 0, lists.length / 2)), 
             mergeKLists(Arrays.copyOfRange(lists, lists.length / 2, lists.length)));
     }
