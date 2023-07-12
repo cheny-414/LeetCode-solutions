@@ -39,21 +39,23 @@ class LRUCache {
         }
         ListNode newNode = new ListNode(key, value);
         add(newNode);
+        map.put(newNode.key, newNode);
 
         if (map.size() > capacity) {
             ListNode nodeToEvict = sHead.next;
             remove(nodeToEvict);
+            map.remove(nodeToEvict.key);
         }
     }
 
     private void remove(ListNode node) {
-        map.remove(node.key);
+        //map.remove(node.key);
         node.prev.next = node.next;
         node.next.prev = node.prev;
     }
 
     private void add(ListNode node) {
-        map.put(node.key, node);
+        //map.put(node.key, node);
         sTail.prev.next = node;
         node.prev = sTail.prev;
         node.next = sTail;
