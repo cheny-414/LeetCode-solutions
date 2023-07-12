@@ -11,11 +11,10 @@
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) return null;
-        ListNode result = lists[0];
-        for (int i = 1; i < lists.length; i++) {
-            result = merge2Lists(result, lists[i]);
-        }
-        return result;
+        if (lists.length == 1) return lists[0];
+        if (lists.length == 2) return merge2Lists(lists[0], lists[1]);
+        return merge2Lists(mergeKLists(Arrays.copyOfRange(lists, 0, lists.length / 2)), 
+            mergeKLists(Arrays.copyOfRange(lists, lists.length / 2, lists.length)));
     }
     
     private ListNode merge2Lists(ListNode first, ListNode second) {
