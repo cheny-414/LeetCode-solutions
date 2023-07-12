@@ -1,6 +1,6 @@
 class LFUCache {
     Map<Integer, Pair<Integer, Integer>> cache; //key, (freq and value) pair
-    Map<Integer, HashSet<Integer>> freqs;  //freq, (list of keys) with that freq
+    Map<Integer, LinkedHashSet<Integer>> freqs;  //freq, (list of keys) with that freq
     int minFreq;
     int capacity;
     public LFUCache(int capacity) {
