@@ -1,42 +1,42 @@
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
-        List<List<Integer>> adj = new ArrayList<>(numCourses);
-        int[] indegree = new int[numCourses];
-        int[] res = new int[numCourses];
+        int[] result = new int[numCourses];
+        int[] indegrees = new int[numCourses];
+        List<List<Integer>> adj = new ArrayList<>();
+        int nodesVisited = 0;
 
+        //build adj list, indegree list
         for (int i = 0; i < numCourses; i++) {
             adj.add(new ArrayList<>());
         }
 
         for (int[] prereq : prerequisites) {
             adj.get(prereq[1]).add(prereq[0]);
-            indegree[prereq[0]]++;
+            indegrees[prereq[0]]++;
         }
 
-        Queue<Integer> q = new ArrayDeque<>();
-        int nodesVisited = 0;
-
+        Queue<Integer> queue = new ArrayDeque<>();
         for (int i = 0; i < numCourses; i++) {
-            if (indegree[i] == 0) {
-                q.add(i);
+            if (indegrees[i] == 0) {
+                queue.offer(i);
             }
         }
 
-        while (!q.isEmpty()) {
-            int curr = q.poll();
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            result[nodesVisited] = node;
             nodesVisited++;
-            res[nodesVisited - 1] = curr;
-            for (int neighbor : adj.get(curr)) {
-                indegree[neighbor]--;
-                if (indegree[neighbor] == 0) {
-                    q.add(neighbor);
+            for (int neighbor : adj.get(node)) {
+                indegrees[neighbor]--;
+                if (indegrees[neighbor] == 0) {
+                    queue.offer(neighbor);
                 }
             }
         }
-        if (nodesVisited < numCourses) {
-            return new int[0];
-        } else {
-            return res;
+        if (nodesVisited == numCourses) {
+            return result;
         }
+
+        return new int[] {};
     }
 }
