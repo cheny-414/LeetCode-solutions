@@ -5,11 +5,11 @@ class Solution {
 
         for (int task : tasks) {
             if (map.containsKey(task) && day < map.get(task)) {
-                day = map.get(task) + 1;
+                day = map.get(task);
             } else {
                 day++;
             }
-            map.put(task, day + space);
+            map.put(task, day + space + 1);
         }
         return day;
     }
