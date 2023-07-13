@@ -1,9 +1,9 @@
 class Solution {
     public int[] findRedundantConnection(int[][] edges) {
         int n = edges.length;
-        UnionFind uf = new UnionFind(n + 1);
+        UnionFind uf = new UnionFind(n);
         for (int[] e : edges) {
-            if (!uf.union(e[0], e[1])) return e;
+            if (!uf.union(e[0] - 1, e[1] - 1)) return e;
         }
         return new int[]{};
     }
@@ -13,7 +13,7 @@ class UnionFind {
     int[] parent, size;
     public UnionFind(int n) {
         parent = new int[n]; size = new int[n];
-        for (int i = 1; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             parent[i] = i; size[i] = 1;
         }
     }
