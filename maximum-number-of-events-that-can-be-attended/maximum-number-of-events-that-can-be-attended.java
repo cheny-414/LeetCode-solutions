@@ -9,13 +9,16 @@ class Solution {
                 pq.offer(events[i][1]);
                 i++;
             }
+
+            while (!pq.isEmpty() && pq.peek() < d) {
+                pq.poll();
+            }
+            
             if (!pq.isEmpty()) {
                 pq.poll();
                 result++;
             }
-            while (!pq.isEmpty() && pq.peek() <= d) {
-                pq.poll();
-            }
+            
         }
         return result;
     }
