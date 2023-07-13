@@ -19,7 +19,6 @@ class Solution {
                 pq.poll();
                 result++;
             }
-            
         }
         return result;
     }
