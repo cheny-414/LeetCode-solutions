@@ -8,7 +8,7 @@ class Solution {
         Deque<Integer> q = new ArrayDeque<>();
 
         for (int i = 0; i < n; i++) {
-            while (!q.isEmpty() && q.peek() < i - k + 1) {
+            if (!q.isEmpty() && q.peek() < i - k + 1) {
                 q.poll();
             }
             while (!q.isEmpty() && nums[q.peekLast()] < nums[i]) {
