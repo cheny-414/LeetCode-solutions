@@ -12,7 +12,7 @@ class Solution {
                 result.add(new int[] {low, high});
             }
 
-            if (high == firstList[i][1]) {
+            if (firstList[i][1] < secondList[j][1]) {
                 i++;
             } else {
                 j++;
