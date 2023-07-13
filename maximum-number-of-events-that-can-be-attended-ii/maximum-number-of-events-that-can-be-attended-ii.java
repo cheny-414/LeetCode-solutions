@@ -20,8 +20,8 @@ class Solution {
         Arrays.sort(events, (a, b) -> a[0] - b[0]);
 
         for (int curIndex = n - 1; curIndex >= 0; --curIndex) {
+            int nextIndex = bisectRight(events, events[curIndex][1]);
             for (int count = 1; count <= k; count++) {
-                int nextIndex = bisectRight(events, events[curIndex][1]);
                 dp[count][curIndex] = Math.max(dp[count][curIndex + 1], events[curIndex][2] + dp[count - 1][nextIndex]);
             }
         }
