@@ -7,7 +7,7 @@ class Solution {
         while (reach < nums.length - 1) {
             int max = index;
             int jumpTo = index;
-            for (int i = index + 1; i <= reach; i++) {
+            for (int i = index; i <= reach; i++) {
                 if (i + nums[i] > max) {
                     max = i + nums[i];
                     jumpTo = i;
