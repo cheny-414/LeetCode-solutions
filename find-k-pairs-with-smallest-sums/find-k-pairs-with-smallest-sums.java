@@ -11,7 +11,7 @@ class Solution {
         //sum, i, j
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
         pq.offer(new int[] {nums1[0] + nums2[0], 0, 0});
-        visited.add(new Pair<Integer, Integer>(0, 0));
+        //visited.add(new Pair<Integer, Integer>(0, 0));
 
         int count = 0;
 
@@ -19,8 +19,8 @@ class Solution {
             int[] curr = pq.poll();
             int i = curr[1];
             int j = curr[2];
-            //if (visited.contains(new Pair<>(i, j))) continue;
-            //visited.add(new Pair<>(i, j));
+            if (visited.contains(new Pair<>(i, j))) continue;
+            visited.add(new Pair<>(i, j));
 
             ans.add(List.of(nums1[i], nums2[j]));
             count++;
@@ -28,12 +28,12 @@ class Solution {
 
             if (i + 1 < m && !visited.contains(new Pair<>(i + 1, j))) {
                 pq.offer(new int[] {nums1[i + 1] + nums2[j], i + 1, j});
-                visited.add(new Pair<>(i + 1, j));
+                //visited.add(new Pair<>(i + 1, j));
             }
 
             if (j + 1 < n && !visited.contains(new Pair<>(i, j + 1))) {
                 pq.offer(new int[] {nums1[i] + nums2[j + 1], i, j + 1});
-                visited.add(new Pair<>(i, j + 1));
+                //visited.add(new Pair<>(i, j + 1));
             }
         }
         return ans;
