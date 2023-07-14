@@ -1,28 +1,25 @@
 class Solution {
     public int largestRectangleArea(int[] heights) {
-        Deque<Integer> stack = new ArrayDeque<>();
-        stack.push(-1);
-        int n = heights.length;
+        Stack<Pair<Integer, Integer>> stack = new Stack<>();
         int maxArea = 0;
 
-        for (int i = 0; i < n; i++) {
-            while (stack.peek() != -1 && heights[stack.peek()] > heights[i]) {
-                int currHeight = heights[stack.pop()];
-                int currWidth = i - 1 - stack.peek();
-                int currArea = currHeight * currWidth;
-                if (currArea > maxArea) {
-                    maxArea = currArea;
-                }
+        for (int i = 0; i < heights.length; i++) {
+            int start = i;
+            while (!stack.isEmpty() && stack.peek().getValue() > heights[i]) {
+                Pair<Integer, Integer> popped = stack.pop();
+                int poppedIndex = popped.getKey();
+                int poppedHeight = popped.getValue();
+                maxArea = Math.max(maxArea, poppedHeight * (i - poppedIndex));
+                start = poppedIndex;
             }
-            stack.push(i);
+            stack.push(new Pair<>(start, heights[i]));
         }
-        while (stack.peek() != -1) {
-            int currHeight = heights[stack.pop()];
-            int currWidth = n - 1 - stack.peek();
-            int currArea = currHeight * currWidth;
-            if (currArea > maxArea) {
-                maxArea = currArea;
-            }
+
+        while (!stack.isEmpty()) {
+            Pair<Integer, Integer> popped = stack.pop();
+            int poppedIndex = popped.getKey();
+            int poppedHeight = popped.getValue();
+            maxArea = Math.max(maxArea, poppedHeight * (heights.length - poppedIndex));
         }
         return maxArea;
     }
