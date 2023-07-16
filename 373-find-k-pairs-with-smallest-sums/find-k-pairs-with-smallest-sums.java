@@ -31,7 +31,7 @@ class Solution {
                 //visited.add(new Pair<>(i + 1, j));
             }
 
-            if (j + 1 < n && !visited.contains(new Pair<>(i, j + 1))) {
+            if (j + 1 < n) {
                 pq.offer(new int[] {nums1[i] + nums2[j + 1], i, j + 1});
                 //visited.add(new Pair<>(i, j + 1));
             }
