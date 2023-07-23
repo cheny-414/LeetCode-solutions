@@ -13,7 +13,7 @@ class Solution {
         for (int i = 0; i < peaks.length; i++) {
             if (peaks[i][1] > maxEnd) {
                 maxEnd = peaks[i][1];
-                if (i < peaks.length - 1 && peaks[i][0] == peaks[i+1][0] && peaks[i][1] == peaks[i+1][1]) continue;
+                if (i + 1 < peaks.length && peaks[i][0] == peaks[i+1][0] && peaks[i][1] == peaks[i+1][1]) continue;
                 answer++;
             }
         }
