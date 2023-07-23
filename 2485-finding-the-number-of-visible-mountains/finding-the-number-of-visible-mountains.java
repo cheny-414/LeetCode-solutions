@@ -12,14 +12,15 @@ class Solution {
         int i = 0;
         while(i < peaks.length){
             answer++;
-            if(i + 1 == peaks.length){
-                return answer;
-            } 
-            int currEnd = peaks[i][1];
-            if(peaks[i][0] == peaks[i + 1][0]){
+            
+            if (i + 1 == peaks.length) return answer;
+
+            int start = peaks[i][0];
+            int end = peaks[i][1];
+            if(start == peaks[i + 1][0]){
                 answer--;
             }
-            while(i + 1 != peaks.length && currEnd >= peaks[i + 1][1]){
+            while(i + 1 != peaks.length && end >= peaks[i + 1][1]){
                     i++;
             }
             i++;
