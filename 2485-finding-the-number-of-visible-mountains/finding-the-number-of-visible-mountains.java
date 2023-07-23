@@ -7,23 +7,15 @@ class Solution {
             peak[0] = pos - height;
             peak[1] = pos + height;
         }
-        Arrays.sort(peaks, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+        Arrays.sort(peaks, (a, b) -> a[0] == b[0] ? b[1] - a[1] : a[0] - b[0]);
 
-        int i = 0;
-        while(i < peaks.length){
-            answer++;
-            
-            if (i + 1 == peaks.length) return answer;
-
-            int start = peaks[i][0];
-            int end = peaks[i][1];
-            if(start == peaks[i + 1][0]){
-                answer--;
+        int maxEnd = Integer.MIN_VALUE;
+        for (int i = 0; i < peaks.length; i++) {
+            if (peaks[i][1] > maxEnd) {
+                maxEnd = peaks[i][1];
+                if (i < peaks.length - 1 && peaks[i][0] == peaks[i+1][0] && peaks[i][1] == peaks[i+1][1]) continue;
+                answer++;
             }
-            while(i + 1 != peaks.length && end >= peaks[i + 1][1]){
-                    i++;
-            }
-            i++;
         }
 
         return answer;
