@@ -15,25 +15,31 @@
  */
 class Solution {
     public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
+        List<TreeNode> forest = new ArrayList<>();
+        if (root == null) return forest;
         Set<Integer> set = new HashSet<>();
-        for (int i : to_delete) set.add(i);
-        List<TreeNode> res = new ArrayList<>();
-        if (!set.contains(root.val)) res.add(root);
-        dfs(root, set, res);
-        return res;
+        for(int i : to_delete) {
+            set.add(i);
+        }
+        deleteNodes(root, set, forest);
+        if (!set.contains(root.val)) {
+            forest.add(root);
+        }
+        return forest;
     }
 
-    private TreeNode dfs(TreeNode node, Set<Integer> set, List<TreeNode> res) {
-        if (node == null) {
-            return null;
-        }
-        node.left = dfs(node.left, set, res);
-        node.right = dfs(node.right, set, res);
+    private TreeNode deleteNodes(TreeNode node, Set<Integer> set, List<TreeNode> forest) {
+        if (node == null) return null;
+
+        node.left = deleteNodes(node.left, set, forest);
+        node.right = deleteNodes(node.right, set, forest);
+
         if (set.contains(node.val)) {
-            if (node.left != null) res.add(node.left);
-            if (node.right != null) res.add(node.right);
+            if (node.left != null) forest.add(node.left);
+            if (node.right != null) forest.add(node.right);
             return null;
         }
+
         return node;
     }
 }
