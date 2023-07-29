@@ -1,26 +1,41 @@
 class Solution {
     public int maximalRectangle(char[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int[][] dp = new int[m][n];
+        int maxArea = 0;
 
-        if (matrix.length == 0) return 0;
-        int maxarea = 0;
-        int[][] dp = new int[matrix.length][matrix[0].length];
+        for (int i = 0; i < n; i++) {
+            dp[0][i] = (int)matrix[0][i] - '0';
+        }
 
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix[0].length; j++){
-                if (matrix[i][j] == '1'){
-
-                    // compute the maximum width and update dp with it
-                    dp[i][j] = j == 0? 1 : dp[i][j-1] + 1;
-
-                    int width = dp[i][j];
-
-                    // compute the maximum area rectangle with a lower right corner at [i, j]
-                    for(int k = i; k >= 0; k--){
-                        width = Math.min(width, dp[k][j]);
-                        maxarea = Math.max(maxarea, width * (i - k + 1));
-                    }
-                }
+        for (int i = 1; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dp[i][j] = matrix[i][j] == '0' ? 0 : dp[i - 1][j] + 1;
             }
-        } return maxarea;
+        }
+
+        for (int i = 0; i < m; i++) {
+            Stack<Pair<Integer, Integer>> stack = new Stack<>(); //height, index pair
+            for (int j = 0; j < n; j++) {
+                int start = j;
+                while (!stack.isEmpty() && stack.peek().getKey() >= dp[i][j]) {
+                    Pair<Integer, Integer> popped = stack.pop();
+                    int height = popped.getKey();
+                    int index = popped.getValue();
+                    maxArea = Math.max(maxArea, height * (j - index));
+                    start = index;
+                }
+                stack.push(new Pair<>(dp[i][j], start));
+            }
+
+            while (!stack.isEmpty()) {
+                Pair<Integer, Integer> popped = stack.pop();
+                int height = popped.getKey();
+                int index = popped.getValue();
+                maxArea = Math.max(maxArea, height * (n - index));
+            }
+        }
+        return maxArea;
     }
 }
