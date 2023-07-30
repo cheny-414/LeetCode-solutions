@@ -9,7 +9,7 @@ class Solution {
         //and what is the first number on the left that is smaller than this number
         int n = nums.length;
         int mod = (int)(1e9 + 7);
-        if (n == 1) return (int)(((long)nums[0] * (long)nums[0]) % mod);
+        //if (n == 1) return (int)(((long)nums[0] * (long)nums[0]) % mod);
         int[] left = new int[n];
         Stack<Integer> st = new Stack<>();
         for (int i = 0; i < n; i++) {
