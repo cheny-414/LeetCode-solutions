@@ -21,14 +21,23 @@ class Solution {
                 if(slow == fast)
                     return true;
             }
+
+            int p = i;
+            while (p > 0) {
+                nums[i] = 0;
+                p = getNextIndex(nums, p, isForward);
+            }
         }
         return false;
     }
     
     public int getNextIndex(int[] nums, int index, boolean curDirection){
         
+        if (nums[index] == 0) return -1;
         boolean direction = nums[index] >= 0;
-        if(direction != curDirection) return -1; // Shold be either forward/backward direction.
+        if(direction != curDirection) {
+            return -1; // Shold be either forward/backward direction.
+        }
         
         int nextIndex = (index + nums[index]) % nums.length;
         if(nextIndex < 0) nextIndex += nums.length;
