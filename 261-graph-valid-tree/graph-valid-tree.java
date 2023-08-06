@@ -32,8 +32,8 @@ class UnionFind {
     }
 
     public boolean union(int a, int b) {
-        int parent_a = parents[a];
-        int parent_b = parents[b];
+        int parent_a = find(a);
+        int parent_b = find(b);
         if (parent_a == parent_b) {
             return false;
         }
