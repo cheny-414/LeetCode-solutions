@@ -17,15 +17,14 @@ class Solution {
             }
             if (Math.min(countT, countF) <= k) {
                 maxSize = Math.max(maxSize, right - left + 1);
-            } else {
-                while (Math.min(countT, countF) > k) {
-                    if (answerKey.charAt(left) == 'T') {
-                        countT--;
-                    } else {
-                        countF--;
-                    }
-                    left++;
+            } 
+            while (Math.min(countT, countF) > k) {
+                if (answerKey.charAt(left) == 'T') {
+                    countT--;
+                } else {
+                    countF--;
                 }
+                left++;
             }
         }
         return maxSize;
