@@ -15,9 +15,6 @@ class Solution {
             } else {
                 countF++;
             }
-            if (Math.min(countT, countF) <= k) {
-                maxSize = Math.max(maxSize, right - left + 1);
-            } 
             while (Math.min(countT, countF) > k) {
                 if (answerKey.charAt(left) == 'T') {
                     countT--;
@@ -26,6 +23,7 @@ class Solution {
                 }
                 left++;
             }
+            maxSize = Math.max(maxSize, right - left + 1);
         }
         return maxSize;
     }
