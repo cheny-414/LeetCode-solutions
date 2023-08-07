@@ -5,7 +5,7 @@ class Solution {
         // invalid value
         int lo = 1;
         int hi = s.length();
-        int answer = -1;
+        int answer = 1;
 
         while (lo <= hi) {
             int mid = lo + (hi - lo) / 2;
