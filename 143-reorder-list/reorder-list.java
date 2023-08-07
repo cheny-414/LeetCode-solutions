@@ -31,8 +31,8 @@ class Solution {
         }
 
         //3. merge 2 sorted lists
-        ListNode prehead = new ListNode();
-        ListNode pointer = prehead;
+        //ListNode prehead = new ListNode();
+        //ListNode pointer = prehead;
         ListNode list1 = head;
         ListNode list2 = prev;
         while (list1 != null && list2 != null) {
