@@ -26,13 +26,13 @@ class Solution {
         boolean isMatch = i < m && (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.');
 
         if (hasStar && isMatch) {
-            canSolve = canSolve || solve(i + 1, j); //use star
+            canSolve |= solve(i + 1, j); //use star
         }
         if (hasStar) {
-            canSolve = canSolve || solve(i, j + 2); //not use star
+            canSolve |= solve(i, j + 2); //not use star
         }
         if (isMatch) {
-            canSolve = canSolve || solve(i + 1, j + 1); //move to next character
+            canSolve |= solve(i + 1, j + 1); //move to next character
         }
         
         dp[i][j] = canSolve ? 1 : 2;
