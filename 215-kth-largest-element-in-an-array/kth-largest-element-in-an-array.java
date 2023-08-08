@@ -11,17 +11,17 @@ class Solution {
         int p = left;
         int pivotValue = nums[right];
         for (int i = left; i < right; i++) {
-            if (nums[i] >= pivotValue) {
+            if (nums[i] <= pivotValue) {
                 swap(i, p, nums);
                 p++;
             }
         }
         swap(p, right, nums);
 
-        if (p == k - 1) {
+        if (p == n - k) {
             return nums[p];
         }
-        else if (p < k - 1) return quickSelect(p + 1, right, nums);
+        else if (p < n - k) return quickSelect(p + 1, right, nums);
         else return quickSelect(left, p - 1, nums);
     }
 
