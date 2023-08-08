@@ -15,7 +15,9 @@ class Solution {
     }
 
     private int solve(int p1, int p2) {
-        
+        if (p1 >= text1.length() || p2 >= text2.length()) {
+            return 0;
+        }
         if (memo[p1][p2] != -1) {
             return memo[p1][p2];
         }
