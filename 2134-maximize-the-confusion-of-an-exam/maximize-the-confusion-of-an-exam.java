@@ -3,13 +3,8 @@ class Solution {
         int left = 0;
         int maxSize = 1;
         int countT = 0, countF = 0;
-        if (answerKey.charAt(0) == 'T') {
-            countT++;
-        } else {
-            countF++;
-        }
 
-        for (int right = 1; right < answerKey.length(); right++) {
+        for (int right = 0; right < answerKey.length(); right++) {
             if (answerKey.charAt(right) == 'T') {
                 countT++;
             } else {
