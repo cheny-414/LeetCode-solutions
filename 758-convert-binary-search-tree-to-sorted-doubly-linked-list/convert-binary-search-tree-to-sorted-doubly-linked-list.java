@@ -20,10 +20,11 @@ class Node {
 */
 
 class Solution {
+    List<Node> list;
     public Node treeToDoublyList(Node root) {
-        List<Node> list = new ArrayList<>();
+        list = new ArrayList<>();
         if (root == null) return null;
-        dfs(root, list);
+        dfs(root);
         for (int i = 0; i < list.size(); i++) {
             list.get(i).left = i == 0 ? list.get(list.size() - 1) : list.get(i - 1);
             list.get(i).right = i == list.size() - 1 ? list.get(0) : list.get(i + 1);
@@ -31,10 +32,10 @@ class Solution {
         return list.get(0);
     }
 
-    private void dfs(Node root, List<Node> list) {
+    private void dfs(Node root) {
         if (root == null) return;
-        dfs(root.left, list);
+        dfs(root.left);
         list.add(root);
-        dfs(root.right, list);
+        dfs(root.right);
     }
 }
