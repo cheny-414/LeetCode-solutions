@@ -24,7 +24,8 @@ class Solution {
                 result.add(curr.val);
                 curr = curr.left;
             } else {
-                curr = stack.pop().right;
+                TreeNode node = stack.pop();
+                curr = node.right;
             }
         }
         return result;
