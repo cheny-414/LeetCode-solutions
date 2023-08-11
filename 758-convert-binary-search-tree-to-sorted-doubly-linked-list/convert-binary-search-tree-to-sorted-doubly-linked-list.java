@@ -25,12 +25,15 @@ class Solution {
         Node first = null;
         Node last = null;
         Stack<Node> stack = new Stack<>();
-        while (root != null || !stack.isEmpty()) {
-            if (root != null) {
-                stack.push(root);
-                root = root.left;
+        Node curr = root;
+        while (curr != null || !stack.isEmpty()) {
+            if (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
             } else {
                 Node node = stack.pop();
+                
+                //the linking part, everything else same as normal inorder traversal
                 if (first == null) {
                     first = node;
                 }
@@ -39,7 +42,9 @@ class Solution {
                     node.left = last;
                 }
                 last = node;
-                root = node.right;
+                //
+
+                curr = node.right;
             }
         }
         first.left = last;
