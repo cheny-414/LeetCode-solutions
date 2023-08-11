@@ -20,22 +20,30 @@ class Node {
 */
 
 class Solution {
-    List<Node> list;
     public Node treeToDoublyList(Node root) {
-        list = new ArrayList<>();
         if (root == null) return null;
-        dfs(root);
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).left = i == 0 ? list.get(list.size() - 1) : list.get(i - 1);
-            list.get(i).right = i == list.size() - 1 ? list.get(0) : list.get(i + 1);
+        Node first = null;
+        Node last = null;
+        Stack<Node> stack = new Stack<>();
+        while (root != null || !stack.isEmpty()) {
+            if (root != null) {
+                stack.push(root);
+                root = root.left;
+            } else {
+                Node node = stack.pop();
+                if (first == null) {
+                    first = node;
+                }
+                if (last != null) {
+                    last.right = node;
+                    node.left = last;
+                }
+                last = node;
+                root = node.right;
+            }
         }
-        return list.get(0);
-    }
-
-    private void dfs(Node root) {
-        if (root == null) return;
-        dfs(root.left);
-        list.add(root);
-        dfs(root.right);
+        first.left = last;
+        last.right = first;
+        return first;
     }
 }
