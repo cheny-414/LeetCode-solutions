@@ -7,8 +7,7 @@ class Solution {
         // Find the sum of all the minimum.
         for (int right = 0; right <= n; ++right) {
             while (!stack.isEmpty() && (right == n || nums[stack.peek()] >= nums[right])) {
-                int mid = stack.peek();
-                stack.pop();
+                int mid = stack.pop();
                 int left = stack.isEmpty() ? -1 : stack.peek();
                 answer -= (long)nums[mid] * (right - mid) * (mid - left);   
             }
@@ -19,8 +18,7 @@ class Solution {
         stack.clear();
         for (int right = 0; right <= n; ++right) {
             while (!stack.isEmpty() && (right == n || nums[stack.peek()] <= nums[right])) {
-                int mid = stack.peek();
-                stack.pop();
+                int mid = stack.pop();
                 int left = stack.isEmpty() ? -1 : stack.peek();
                 answer += (long)nums[mid] * (right - mid) * (mid - left);   
             }
