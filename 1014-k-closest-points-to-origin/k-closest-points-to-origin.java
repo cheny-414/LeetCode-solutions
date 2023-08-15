@@ -1,21 +1,36 @@
 class Solution {
     public int[][] kClosest(int[][] points, int k) {
-        PriorityQueue<int[]> q = new PriorityQueue<int[]>((a, b) -> Integer.compare(distance(b), distance(a)));
-        for (int[] point : points) {
-            q.offer(point);
-            if (q.size() > k) {
-                q.poll();
+        k = points.length - k;
+        quickSelect(0, points.length - 1, points, k);
+        return Arrays.copyOfRange(points, k, points.length);
+    }
+
+    private void quickSelect(int left, int right, int[][] points, int k) {
+        int pointer = left;
+        int pivot = distance(points[right]);
+        for (int i = left; i < right; i++) {
+            int dis = distance(points[i]);
+            if (distance(points[i]) >= pivot) {
+                swap(i, pointer, points);
+                pointer++;
             }
         }
-        int[][] answer = new int[q.size()][2];
-        int i = 0;
-        while (!q.isEmpty()) {
-            int[] popped = q.poll();
-            answer[i][0] = popped[0];
-            answer[i][1] = popped[1];
-            i++;
+        swap(pointer, right, points);
+        if (pointer > k) {
+            quickSelect(left, pointer - 1, points, k);
+        } else if (pointer < k) {
+            quickSelect(pointer + 1, right, points, k);
         }
-        return answer;
+        //return true;
+    }
+
+    private void swap(int i, int j, int[][] points) {
+        int temp0 = points[i][0];
+        int temp1 = points[i][1];
+        points[i][0] = points[j][0];
+        points[i][1] = points[j][1];
+        points[j][0] = temp0;
+        points[j][1] = temp1;
     }
 
     private int distance(int[] point) {
