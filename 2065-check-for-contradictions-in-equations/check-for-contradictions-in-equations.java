@@ -33,12 +33,13 @@ class UnionFind {
     }
 
     public int find(int x) {
-        if (parents[x] != x) {
+        if (parents[x] == x) {
+            return x;
+        } else {
             int parent = find(parents[x]);
             values[x] *= values[parents[x]];
-            parents[x] = parent;
+            return parents[x] = parent;
         }
-        return parents[x];
     }
 
     public boolean union(int x, int y, double value) {
@@ -47,10 +48,10 @@ class UnionFind {
         double valueX = values[x];
         double valueY = values[y];
         if (parentX == parentY) {
-            return Math.abs(valueX / valueY - value) >= 1e-5;
+            return Math.abs(valueX * value - valueY) >= 1e-5;
         }
         parents[parentY] = parentX;
-        values[parentY] = 1 / value * valueX / valueY;
+        values[parentY] = valueX * value / valueY;
         return false;
     }
 }
