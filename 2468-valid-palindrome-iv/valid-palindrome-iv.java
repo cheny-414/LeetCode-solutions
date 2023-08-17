@@ -5,10 +5,11 @@ class Solution {
         while (left < right) {
             if (s.charAt(left) != s.charAt(right)) {
                 misMatches++;
+                if (misMatches > 2) return false;
             }
             left++;
             right--;
         }
-        return misMatches <= 2;
+        return true;
     }
 }
