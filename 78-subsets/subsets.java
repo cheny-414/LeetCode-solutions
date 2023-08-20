@@ -10,8 +10,8 @@ class Solution {
   }
   private void dfs(List<Integer> curr, int start) {
     for (int i = start; i < nums.length; i++) {
-      List<Integer> next = new ArrayList<>();
-      next.addAll(curr);
+      List<Integer> next = new ArrayList<>(curr);
+      //next.addAll(curr);
       next.add(nums[i]);
       res.add(next);
       dfs(next, i + 1);
