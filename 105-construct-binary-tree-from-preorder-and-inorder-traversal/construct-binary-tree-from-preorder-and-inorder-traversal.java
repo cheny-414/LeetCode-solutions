@@ -29,7 +29,7 @@ class Solution {
     private TreeNode helper(int preStart, int preEnd, int inStart, int inEnd) {
         int rootVal = preorder[preStart];
         TreeNode root = new TreeNode(rootVal);
-        if (preEnd == preStart) return root;
+        //if (preEnd == preStart) return root;
         int index = inorderIndexMap.get(rootVal);
         
         //left side:
