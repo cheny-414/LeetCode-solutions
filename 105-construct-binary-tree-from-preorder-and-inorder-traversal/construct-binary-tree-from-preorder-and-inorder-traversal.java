@@ -23,7 +23,7 @@ class Solution {
         for (int i = 0; i < inorder.length; i++) {
             inorderIndexMap.put(inorder[i], i);
         }
-        return helper(0, preorder.length - 1, 0, preorder.length - 1);
+        return helper(0, preorder.length - 1, 0, inorder.length - 1);
     }
 
     private TreeNode helper(int preStart, int preEnd, int inStart, int inEnd) {
