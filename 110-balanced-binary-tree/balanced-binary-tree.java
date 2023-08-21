@@ -20,7 +20,6 @@ class Solution {
 
     private int getHeight(TreeNode root) {
         if (root == null) return 0;
-        if (root.left == null && root.right == null) return 1;
         int left = getHeight(root.left);
         int right = getHeight(root.right);
         if (left == -1 || right == -1 || Math.abs(left - right) > 1) return -1;
