@@ -24,10 +24,6 @@ class Solution {
             res.add(null);
             return res;
         }
-        if (start == end) {
-            res.add(new TreeNode(start));
-            return res;
-        }
         for (int i = start; i <= end; i++) {
             List<TreeNode> left = helper(start, i - 1);
             List<TreeNode> right = helper(i + 1, end);
