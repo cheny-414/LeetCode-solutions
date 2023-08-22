@@ -12,7 +12,7 @@ class Solution {
         if (totalSum % 2 != 0) return false;
         this.nums = nums;
         this.targetSum = totalSum / 2;
-        this.dp = new Boolean[nums.length + 1][totalSum / 2 + 1];
+        this.dp = new Boolean[nums.length + 1][targetSum + 1];
         return canDo(0, 0);
     }
 
