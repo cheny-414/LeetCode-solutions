@@ -1,5 +1,5 @@
 class Solution {
-    Map<Pair<Integer, Integer>, Boolean> dp;  // (index, diff) -> can partition
+    Boolean[][] dp;  // (index, diff) -> can partition
     int[] nums;
     int targetSum;
     public boolean canPartition(int[] nums) {
@@ -12,7 +12,7 @@ class Solution {
         if (totalSum % 2 != 0) return false;
         this.nums = nums;
         this.targetSum = totalSum / 2;
-        this.dp = new HashMap<>();
+        this.dp = new Boolean[nums.length + 1][targetSum + 1];
         return canDo(0, 0);
     }
 
@@ -23,8 +23,7 @@ class Solution {
         }
         if (diff > targetSum) return false;
         //check dp
-        Pair<Integer, Integer> key = new Pair<>(start, diff);
-        if (dp.containsKey(key))return dp.get(key);
+        if (dp[start][diff] != null) return dp[start][diff];
 
         boolean canDo = false;
         //recursion
@@ -34,7 +33,7 @@ class Solution {
         if (canDo(start + 1, diff1) || canDo(start + 1, diff2)) {
             canDo = true;
         }
-        dp.put(key, canDo);
+        dp[start][diff] = canDo;
         return canDo;
     }
 }
