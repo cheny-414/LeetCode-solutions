@@ -17,7 +17,7 @@ class Solution {
 
     public static long fib(int n) {
         double phi = (1 + Math.sqrt(5)) / 2;
-        double f = (Math.pow(phi, n) - Math.pow(1 - phi, n)) / Math.sqrt(5);
+        double f = (Math.pow(phi, n)) / Math.sqrt(5);
         return (long) Math.round(f);
     }
 }
