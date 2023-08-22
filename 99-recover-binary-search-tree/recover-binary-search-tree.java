@@ -32,8 +32,8 @@ class Solution {
             } else {
                 TreeNode node = stack.pop();
                 if (pred != null && node.val < pred.val) {
-                    y = node;
-                    if (x == null) x = pred;
+                    x = node;
+                    if (y == null) y = pred;
                     else {
                         swap(x, y); 
                         return;
