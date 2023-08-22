@@ -34,7 +34,10 @@ class Solution {
                 if (pred != null && node.val < pred.val) {
                     y = node;
                     if (x == null) x = pred;
-                    else break;
+                    else {
+                        swap(x, y); 
+                        return;
+                    }
                 }
                 pred = node;
                 curr = node.right;
