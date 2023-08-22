@@ -1,20 +1,18 @@
 class Solution {
-    
+    Map<String, PriorityQueue<String>> targets;
     List<String> answer = new LinkedList<>();
     public List<String> findItinerary(List<List<String>> tickets) {
-        Map<String, PriorityQueue<String>> targets = new HashMap<>();
+        targets = new HashMap<>();
         for (List<String> ticket : tickets) {
-          if (!targets.containsKey(ticket.get(0))) {
-            targets.put(ticket.get(0), new PriorityQueue<>());
-          }
+          targets.putIfAbsent(ticket.get(0), new PriorityQueue<>());
           targets.get(ticket.get(0)).add(ticket.get(1));
         }
-        visit("JFK", targets);
+        visit("JFK");
         return answer;
     }
-    public void visit(String airport, Map<String, PriorityQueue<String>> targets) {
+    public void visit(String airport) {
         while (targets.containsKey(airport) && !targets.get(airport).isEmpty()) {
-            visit(targets.get(airport).poll(), targets);
+            visit(targets.get(airport).poll());
         }
         answer.add(0, airport);
     }
