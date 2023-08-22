@@ -1,6 +1,7 @@
 class Solution {
     Boolean[][] dp;  // (index, diff) -> can partition
     int[] nums;
+    int targetSum;
     public boolean canPartition(int[] nums) {
         int totalSum = 0;
         // find sum of all array elements
@@ -10,7 +11,8 @@ class Solution {
         // if totalSum is odd, it cannot be partitioned into equal sum subset
         if (totalSum % 2 != 0) return false;
         this.nums = nums;
-        this.dp = new Boolean[nums.length + 1][totalSum];
+        this.targetSum = totalSum / 2;
+        this.dp = new Boolean[nums.length + 1][totalSum / 2 + 1];
         return canDo(0, 0);
     }
 
@@ -19,6 +21,7 @@ class Solution {
         if (start == nums.length - 1) {
             return nums[start] == diff || nums[start] == -diff;
         }
+        if (diff > targetSum) return false;
         //check dp
         if (dp[start][diff] != null) return dp[start][diff];
 
