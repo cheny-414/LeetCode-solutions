@@ -9,15 +9,29 @@ class Node {
 */
 
 class Solution {
-    Node tail = null;
     public Node flatten(Node head) {
-        if (head == null) return tail;
-        tail = flatten(head.next);
-        head.next = flatten(head.child);
-        if (head.next != null) {
-            head.next.prev = head;
-        }
-        head.child = null;
+        helper(head);
         return head;
+    }
+
+    public Node helper(Node head) {
+        if (head == null) return null;
+        Node curr = head;
+        Node tail = null;
+        while (curr != null) {
+            if (curr.child != null) {
+                Node childTail = helper(curr.child);
+                if (curr.next != null) {
+                    curr.next.prev = childTail;
+                    childTail.next = curr.next;
+                }
+                curr.next = curr.child;
+                curr.child.prev = curr;
+                curr.child = null;
+            }
+            tail = curr;
+            curr = curr.next;
+        }
+        return tail;
     }
 }
