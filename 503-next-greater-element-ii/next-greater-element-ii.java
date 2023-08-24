@@ -4,7 +4,7 @@ class Solution {
         int[] answer = new int[n];
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < n; i++) {
-            while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+            while (!stack.isEmpty() && nums[i] > nums[stack.peek()]) {
                 int index = stack.pop();
                 answer[index] = nums[i];
             }
