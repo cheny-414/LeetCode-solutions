@@ -23,13 +23,13 @@ class Solution {
             }
         }
 
-        Interval curr = q.poll();
+        int currEnd = q.poll().end;
         while (!q.isEmpty()) {
-            if (curr.end < q.peek().start) {
-                answer.add(new Interval(curr.end, q.peek().start));
-                curr = q.poll();
+            if (currEnd < q.peek().start) {
+                answer.add(new Interval(currEnd, q.peek().start));
+                currEnd = q.poll().end;
             } else {
-                curr = curr.end < q.peek().end ? q.peek() : curr;
+                currEnd = Math.max(currEnd, q.peek().end);
                 q.poll();
             }
         }
