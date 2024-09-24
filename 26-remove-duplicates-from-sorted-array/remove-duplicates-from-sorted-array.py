@@ -8,5 +8,5 @@ class Solution(object):
         for i in range(1, len(nums)):
             if nums[i] > nums[i - 1]:
                 nums[p] = nums[i]
-                p = p + 1
+                p += 1
         return p
