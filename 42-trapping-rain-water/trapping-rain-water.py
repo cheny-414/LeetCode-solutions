@@ -8,7 +8,7 @@ class Solution:
         while (left < right):
             left_max = max(height[left], left_max)
             right_max = max(height[right], right_max)
-            if height[left] <= height[right]: 
+            if left_max <= right_max: 
                 water += left_max - height[left]
                 left += 1
             else:
