@@ -5,7 +5,7 @@ class Solution:
             if left < right:
                 pivot = partition(left, right)
                 if pivot == k:
-                    return points[:k]
+                    return
                 if pivot < k:
                     quickselect(k, pivot + 1, right)
                 else:
