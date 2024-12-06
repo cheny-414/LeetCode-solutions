@@ -2,7 +2,7 @@ class Solution:
     def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
         rank = {}
         graph = defaultdict(list)
-        conn_dict = set()
+        conn_set = set()
 
         for i in range(n):
             rank[i] = None
@@ -11,7 +11,7 @@ class Solution:
             u, v = edge[0], edge[1]
             graph[u].append(v)
             graph[v].append(u)
-            conn_dict.add((min(u, v), max(u, v)))
+            conn_set.add((min(u, v), max(u, v)))
 
         def dfs(node, discovery_rank):
             if rank[node]:
@@ -24,9 +24,9 @@ class Solution:
                     continue
                 recursive_rank = dfs(neighbor, discovery_rank + 1)
                 if recursive_rank <= discovery_rank:
-                    conn_dict.remove((min(node, neighbor), max(node, neighbor)))
+                    conn_set.remove((min(node, neighbor), max(node, neighbor)))
                 min_rank = min(min_rank, recursive_rank)
             return min_rank
 
         dfs(0, 0)
-        return list(conn_dict)
+        return list(conn_set)
