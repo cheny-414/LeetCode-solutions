@@ -3,9 +3,7 @@ class Solution:
         def canMake(days):
             bouquets = 0
             adjacent = 0
-            flag = False
-            for i in range(0, len(bloomDay)):
-                bloom = bloomDay[i]
+            for bloom in bloomDay:
                 if bloom <= days:
                     adjacent += 1
                     if adjacent == k:
