@@ -15,7 +15,7 @@ class Solution:
         
         left = 1
         right, max_days = max(bloomDay), max(bloomDay)
-        min_days = float('inf')
+        min_days = -1
         while left <= right:
             mid = left + (right - left) // 2
             if canMake(mid):
@@ -23,4 +23,4 @@ class Solution:
                 right = mid - 1
             else:
                 left = mid + 1
-        return min_days if min_days <= max_days else -1
+        return min_days
