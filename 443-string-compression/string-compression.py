@@ -2,9 +2,9 @@ class Solution:
     def compress(self, chars: List[str]) -> int:
         # fast = 0
         slow = 0
-        currChar = ''
-        count = 0
-        for i in range(len(chars)):
+        currChar = chars[0]
+        count = 1
+        for i in range(1, len(chars)):
             if i != 0 and chars[i] != chars[i - 1]:
                 #write to list
                 chars[slow] = currChar
@@ -16,9 +16,6 @@ class Solution:
                         slow += 1
                 #update
                 currChar = chars[i]
-                count = 1
-            elif i == 0:
-                currChar = chars[0]
                 count = 1
             else:
                 count += 1
