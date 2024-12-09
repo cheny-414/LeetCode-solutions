@@ -11,6 +11,4 @@ class Solution:
                 if nums[left] == 0:
                     zeroes -= 1
                 left += 1
-            else:
-                longest = max(longest, size)
-        return longest
+        return right - left + 1
