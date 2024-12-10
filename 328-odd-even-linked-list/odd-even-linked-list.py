@@ -15,7 +15,6 @@ class Solution:
         while even and even.next:
             odd.next = even.next
             odd = odd.next
-            #prev_even = even
             even.next = odd.next
             even = even.next
         odd.next = even_start
