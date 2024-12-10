@@ -15,7 +15,4 @@ class Solution:
             q = q1 + q2
             q1.clear()
             q2.clear()
-        if q.pop() == 'R': 
-            return 'Radiant'
-        else:
-            return 'Dire'
+        return 'Radiant' if q.pop() == 'R' else 'Dire'
