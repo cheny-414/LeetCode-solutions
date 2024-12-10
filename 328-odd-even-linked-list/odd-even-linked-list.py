@@ -12,8 +12,6 @@ class Solution:
         odd = head
         even = head.next
         even_start = even
-        prev_odd = None
-        prev_even = None
         while even and even.next:
             odd.next = even.next
             odd = odd.next
