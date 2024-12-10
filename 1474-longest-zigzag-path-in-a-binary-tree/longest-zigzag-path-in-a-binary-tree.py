@@ -35,4 +35,4 @@ class Solution:
         for node in dp.keys():
             for direction in dp[node]:
                 result = max(result, dp[node][direction])
-        return result -1
+        return result - 1
