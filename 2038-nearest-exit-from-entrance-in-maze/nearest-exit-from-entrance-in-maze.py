@@ -4,6 +4,7 @@ class Solution:
         m = len(maze)
         n = len(maze[0])
         visited = [[0] * n for _ in range(m)]
+        visited[entrance[0]][entrance[1]] = 1
         steps = 0
         while q:
             size = len(q)
