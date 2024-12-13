@@ -4,7 +4,7 @@ class Solution:
 
         max_heap = [-x for x in nums[:n]]
         heapify(max_heap)
-        min_sum = [0] * (n + 1)
+        min_sum = [0] * (n + 2)
         min_sum[0] = -sum(max_heap)
 
         for i in range(n, 2 * n):
@@ -14,17 +14,17 @@ class Solution:
 
         min_heap = nums[2*n:]
         heapify(min_heap)
-        max_sum = [0] * (n + 1)
-        max_sum[n] = sum(min_heap)
+        max_sum = [0] * (n + 2)
+        max_sum[n + 1] = sum(min_heap)
 
         best = float('inf')
         for i in range(2 * n - 1, n - 1, -1):
             heappush(min_heap, nums[i])
             val = heappop(min_heap)
-            max_sum[i - n] = max_sum[i - n + 1] - val + nums[i]
+            max_sum[i - n + 1] = max_sum[i - n + 2] - val + nums[i]
 
         for i in range(0, n + 1):
             left = min_sum[i]
-            right = max_sum[i]
+            right = max_sum[i + 1]
             best = min(best, left - right)
         return best
