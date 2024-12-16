@@ -10,5 +10,4 @@ class Solution:
                 count -= 1
                 if count == 0:
                     candidate = None
-                    count == 0
         return candidate
