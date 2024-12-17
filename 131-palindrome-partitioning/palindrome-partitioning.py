@@ -24,9 +24,9 @@ class Solution:
                     if i + 1 < len(s):
                         parts = helper(i + 1, end)
                         for part in parts:
-                            newPart = []
-                            newPart.append(s[start:i+1])
-                            newPart.extend(part)
+                            newPart = deque(part)
+                            newPart.appendleft(s[start:i+1])
+                            newPart = list(newPart)
                             ret.append(newPart)
                     else:
                         ret.append([s[start:i+1]])
