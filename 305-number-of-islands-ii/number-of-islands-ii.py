@@ -29,8 +29,7 @@ class Solution:
         answer = []
         def getIndex(row, col):
             return row * n + col
-        for pos in positions:
-            row, col = pos
+        for row, col in positions:
             if (row, col) in positions_set:
                 answer.append(islands)
                 continue
