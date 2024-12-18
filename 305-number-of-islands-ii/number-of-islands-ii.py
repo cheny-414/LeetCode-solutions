@@ -34,8 +34,7 @@ class Solution:
             if (row, col) in positions_set:
                 answer.append(islands)
                 continue
-            positions_set.add((row, col))
-            
+            positions_set.add((row, col))       
             board[row][col] = 1
             islands += 1
             for di in dirs:
