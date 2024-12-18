@@ -1,45 +1,41 @@
 class LFUCache:
 
     def __init__(self, capacity: int):
-        self.cache = defaultdict() #key : (freq, value)
-        self.frequencies = defaultdict()# freq: (key1, key2)
-        self.min_freq = 0
+        self.cache = {} # key: freq, value
+        self.freqs = {} # freq: list of (keys: None)
         self.capacity = capacity
+        self.min_freq = 0
 
     def get(self, key: int) -> int:
-        if key not in self.cache.keys():
+        if key not in self.cache:
             return -1
         freq, value = self.cache[key]
-        self.frequencies[freq].pop(key)
-        if not self.frequencies[freq]:
-            self.frequencies.pop(freq)
-            if self.min_freq == freq:
-                self.min_freq += 1
+        del self.freqs[freq][key]
+        if not self.freqs[freq]:
+            del self.freqs[freq]
+            if freq == self.min_freq:
+                self.min_freq = freq + 1
         self.insert(key, value, freq + 1)
         return value
-
     def put(self, key: int, value: int) -> None:
-        if self.capacity <= 0:
-            return
-        if key in self.cache.keys():
-            freq = self.cache[key][0]
-            self.cache[key] = (freq, value)
+        if key in self.cache:
+            self.cache[key] = (self.cache[key][0], value)
             self.get(key)
             return
         if self.capacity == len(self.cache):
-            keys = self.frequencies[self.min_freq]
-            keyToDelete = next(iter(next(iter(keys.items()))))
-            self.cache.pop(keyToDelete)
-            self.frequencies[self.min_freq].pop(keyToDelete)
-            if not self.frequencies[self.min_freq]:
-                self.frequencies.pop(self.min_freq)
+            keysToRemove = self.freqs[self.min_freq]
+            keyToRemove = next(iter(keysToRemove.keys()))
+            del self.cache[keyToRemove]
+            del self.freqs[self.min_freq][keyToRemove]
+            if not self.freqs[self.min_freq]:
+                del self.freqs[self.min_freq]
         self.min_freq = 1
         self.insert(key, value, 1)
     def insert(self, key, value, freq):
         self.cache[key] = (freq, value)
-        if freq not in self.frequencies:
-            self.frequencies[freq] = defaultdict()
-        self.frequencies[freq][key] = None
+        if freq not in self.freqs:
+            self.freqs[freq] = defaultdict()
+        self.freqs[freq][key] = None
 
 
 # Your LFUCache object will be instantiated and called as such:
