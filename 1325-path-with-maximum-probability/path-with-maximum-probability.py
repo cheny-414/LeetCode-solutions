@@ -12,8 +12,9 @@ class Solution:
             prob, node = heappop(pq)
             if node == end_node:
                 return -prob
-            if -prob < probs[node]:
+            if -prob < probs[node] or visited[node]:
                 continue
+            visited[node] = True
             for nextProb, neighbor in adj[node]:
                 overallProb = -prob * nextProb
                 if probs[neighbor] < overallProb:
