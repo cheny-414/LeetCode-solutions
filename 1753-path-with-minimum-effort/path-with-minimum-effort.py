@@ -11,6 +11,8 @@ class Solution:
         while pq:
             cost, i, j = heappop(pq)
             #visited[i][j] = True
+            if cost > costs[i][j]:
+                continue
             for di in dirs:
                 nexti = i + di[0]
                 nextj = j + di[1]
@@ -19,6 +21,6 @@ class Solution:
                     maxCost = max(nextCost, costs[i][j])
                     if costs[nexti][nextj] > maxCost:
                         costs[nexti][nextj] = maxCost
-                    #visited[nexti][nextj] = True
+                        #visited[nexti][nextj] = True
                         heappush(pq, (maxCost, nexti, nextj))
         return costs[-1][-1]
