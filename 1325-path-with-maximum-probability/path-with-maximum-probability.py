@@ -4,20 +4,14 @@ class Solution:
         probs = [0] * n
         probs[start_node] = 1
         adj = defaultdict(list)
-        visited = [False] * n
         for i, edge in enumerate(edges):
             adj[edge[0]].append((succProb[i], edge[1]))
             adj[edge[1]].append((succProb[i], edge[0]))
         while pq:
             prob, node = heappop(pq)
-            if node == end_node:
-                return -prob
-            if -prob < probs[node] or visited[node]:
-                continue
-            visited[node] = True
             for nextProb, neighbor in adj[node]:
                 overallProb = -prob * nextProb
-                if probs[neighbor] < overallProb and not visited[neighbor]:
+                if probs[neighbor] < overallProb:
                     probs[neighbor] = overallProb
                     heappush(pq, (-overallProb, neighbor))
         return probs[end_node]
