@@ -7,8 +7,8 @@ class Solution:
             new_distances = distances.copy()
 
             for source, dest, price in flights:
-                if distances[source] == float('inf'):
-                    continue
+                # if distances[source] == float('inf'):
+                #     continue
                 if distances[source] + price < new_distances[dest]:
                     new_distances[dest] = distances[source] + price
             distances = new_distances
