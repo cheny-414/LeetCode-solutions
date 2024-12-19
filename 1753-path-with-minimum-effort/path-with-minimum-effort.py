@@ -10,17 +10,13 @@ class Solution:
         pq = [(0, 0, 0)] # cost, i, j
         while pq:
             cost, i, j = heappop(pq)
-            visited[i][j] = True
-            if cost > costs[i][j]:
-                continue
             for di in dirs:
                 nexti = i + di[0]
                 nextj = j + di[1]
                 if 0 <= nexti < m and 0 <= nextj < n:
                     nextCost = abs(heights[nexti][nextj] - heights[i][j])
                     maxCost = max(nextCost, costs[i][j])
-                    if costs[nexti][nextj] > maxCost and not visited[nexti][nextj]:
+                    if costs[nexti][nextj] > maxCost:
                         costs[nexti][nextj] = maxCost
-                        #visited[nexti][nextj] = True
                         heappush(pq, (maxCost, nexti, nextj))
         return costs[-1][-1]
