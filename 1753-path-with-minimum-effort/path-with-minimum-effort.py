@@ -19,7 +19,7 @@ class Solution:
                 if 0 <= nexti < m and 0 <= nextj < n:
                     nextCost = abs(heights[nexti][nextj] - heights[i][j])
                     maxCost = max(nextCost, costs[i][j])
-                    if costs[nexti][nextj] > maxCost:
+                    if costs[nexti][nextj] > maxCost and not visited[nexti][nextj]:
                         costs[nexti][nextj] = maxCost
                         #visited[nexti][nextj] = True
                         heappush(pq, (maxCost, nexti, nextj))
