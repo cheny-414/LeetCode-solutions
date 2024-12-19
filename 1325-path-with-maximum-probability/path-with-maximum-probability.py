@@ -10,10 +10,10 @@ class Solution:
             adj[edge[1]].append((succProb[i], edge[0]))
         while pq:
             prob, node = heappop(pq)
-            # if node == end_node:
-            #     return prob
-            if -prob < probs[node]:
-                continue
+            if node == end_node:
+                return -prob
+            # if -prob < probs[node]:
+            #     continue
             for nextProb, neighbor in adj[node]:
                 overallProb = -prob * nextProb
                 if probs[neighbor] < overallProb:
