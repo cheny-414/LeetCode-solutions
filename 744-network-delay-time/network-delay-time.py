@@ -9,7 +9,7 @@ class Solution:
         while pq:
             delay, node = heappop(pq)
             for w, v in adj[node]:
-                if delays[v] > w + delay:
+                if delays[v] > w + delays[node]:
                     delays[v] = w + delay
                     heappush(pq, (delays[v], v))
         return -1 if max(delays) == float('inf') else max(delays)
