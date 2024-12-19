@@ -10,7 +10,7 @@ class Solution:
         pq = [(0, 0, 0)] # cost, i, j
         while pq:
             cost, i, j = heappop(pq)
-            visited[i][j] = True
+            #visited[i][j] = True
             for di in dirs:
                 nexti = i + di[0]
                 nextj = j + di[1]
