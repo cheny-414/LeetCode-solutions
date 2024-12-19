@@ -5,12 +5,12 @@ class Solution:
         dirs = ((0, 1), (1, 0), (0, -1), (-1, 0))
         costs = [[float('inf')] * n for _ in range(m)]
         costs[0][0] = 0
-        #visited = [[False] * n for _ in range(m)]
+        visited = [[False] * n for _ in range(m)]
         #visited[0][0] = True
         pq = [(0, 0, 0)] # cost, i, j
         while pq:
             cost, i, j = heappop(pq)
-            #visited[i][j] = True
+            visited[i][j] = True
             if cost > costs[i][j]:
                 continue
             for di in dirs:
