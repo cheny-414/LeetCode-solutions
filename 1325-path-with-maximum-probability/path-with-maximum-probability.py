@@ -17,7 +17,7 @@ class Solution:
             visited[node] = True
             for nextProb, neighbor in adj[node]:
                 overallProb = -prob * nextProb
-                if probs[neighbor] < overallProb:
+                if probs[neighbor] < overallProb and not visited[neighbor]:
                     probs[neighbor] = overallProb
                     heappush(pq, (-overallProb, neighbor))
         return probs[end_node]
