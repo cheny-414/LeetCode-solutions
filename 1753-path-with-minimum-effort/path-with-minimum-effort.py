@@ -6,7 +6,7 @@ class Solution:
         costs = [[float('inf')] * n for _ in range(m)]
         costs[0][0] = 0
         visited = [[False] * n for _ in range(m)]
-        visited[0][0] = True
+        #visited[0][0] = True
         pq = [(0, 0, 0)] # cost, i, j
         while pq:
             cost, i, j = heappop(pq)
@@ -19,6 +19,6 @@ class Solution:
                     maxCost = max(nextCost, costs[i][j])
                     if costs[nexti][nextj] > maxCost:
                         costs[nexti][nextj] = maxCost
-                        #visited[nexti][nextj] = True
+                    #visited[nexti][nextj] = True
                         heappush(pq, (maxCost, nexti, nextj))
         return costs[-1][-1]
