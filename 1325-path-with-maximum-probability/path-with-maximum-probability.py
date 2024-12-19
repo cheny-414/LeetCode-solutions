@@ -4,7 +4,7 @@ class Solution:
         probs = [0] * n
         probs[start_node] = 1
         adj = defaultdict(list)
-        #visited = [False] * n
+        visited = [False] * n
         for i, edge in enumerate(edges):
             adj[edge[0]].append((succProb[i], edge[1]))
             adj[edge[1]].append((succProb[i], edge[0]))
@@ -12,6 +12,8 @@ class Solution:
             prob, node = heappop(pq)
             # if node == end_node:
             #     return prob
+            if -prob < probs[node]:
+                continue
             for nextProb, neighbor in adj[node]:
                 overallProb = -prob * nextProb
                 if probs[neighbor] < overallProb:
