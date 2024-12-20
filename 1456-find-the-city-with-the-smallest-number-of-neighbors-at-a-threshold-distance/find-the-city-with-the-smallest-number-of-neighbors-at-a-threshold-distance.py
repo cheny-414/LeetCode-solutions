@@ -28,11 +28,26 @@ class Solution:
                         dist[source] = dist[dest] + weight
             
             return sum(1 for x in dist if x <= distanceThreshold)
-        
+        def floydWarshall():
+            dist = [[float('inf')] * n for _ in range(n)]
+            for i in range(n):
+                dist[i][i] = 0
+            for u, v, w in edges:
+                dist[u][v] = w
+                dist[v][u] = w
+            for k in range(n):
+                for i in range(n):
+                    for j in range(n):
+                        dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+            return dist
+
+        dist = floydWarshall()
         smallest = -1
         smallestCount = float('inf')
         for i in range(n):
-            count = dijkstra(i)
+            #count = dijkstra(i)
+            #count = bellmanFord(i)
+            count = sum(1 for x in dist[i] if x <= distanceThreshold)
             if count <= smallestCount:
                 smallest = i
                 smallestCount = count
