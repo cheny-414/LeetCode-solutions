@@ -1,5 +1,21 @@
 class Solution:
     def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
+        adj = defaultdict(list)
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            adj[v].append((u, w))
+        def dijkstra(start):
+            dist = [float('inf')] * n
+            dist[start] = 0
+            pq = [(0, start)]
+
+            while pq:
+                cost, node = heappop(pq)
+                for nei, w in adj[node]:
+                    if dist[nei] > w + cost:
+                        dist[nei] = w + cost
+                        heappush(pq, (dist[nei], nei))
+            return sum(1 for x in dist if x <= distanceThreshold)
         def bellmanFord(start):
             dist = [float('inf')] * n
             dist[start] = 0
@@ -16,7 +32,7 @@ class Solution:
         smallest = -1
         smallestCount = float('inf')
         for i in range(n):
-            count = bellmanFord(i)
+            count = dijkstra(i)
             if count <= smallestCount:
                 smallest = i
                 smallestCount = count
