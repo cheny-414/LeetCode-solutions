@@ -12,10 +12,9 @@ class Solution:
                 map.add(curr)
         def kSum(k, list_so_far, lastIndex):
             if k == 2:
-                twoSum(list_so_far, lastIndex, target - sum(list_so_far))
-                return
+                return twoSum(list_so_far, lastIndex, target - sum(list_so_far))
             for i in range(lastIndex + 1, len(nums)):
                 kSum(k - 1, list_so_far + [nums[i]], i)
-        nums.sort()
+                
         kSum(4, [], -1)
         return list(res)
