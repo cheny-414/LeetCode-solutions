@@ -10,8 +10,12 @@ class Solution:
                     fourSum = sofar + [curr] + [diff]
                     res.add(tuple(sorted(fourSum)))
                 map.add(curr)
-        
-        for i in range(0, len(nums)):
-            for j in range(i + 1, len(nums)):
-                twoSum([nums[i], nums[j]], j, target - nums[i] - nums[j])
+        def kSum(k, list_so_far, lastIndex):
+            if k == 2:
+                twoSum(list_so_far, lastIndex, target - sum(list_so_far))
+                return
+            for i in range(lastIndex + 1, len(nums)):
+                kSum(k - 1, list_so_far + [nums[i]], i)
+        nums.sort()
+        kSum(4, [], -1)
         return list(res)
