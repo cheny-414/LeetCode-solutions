@@ -2,7 +2,7 @@ class Solution:
     def findKthNumber(self, m: int, n: int, k: int) -> int:
         def num_of_numbers_lte_x(x):
             res = 0
-            for i in range(1, (m + 1)):
+            for i in range(1, min(x + 1, m + 1)):
                 res += min(x // i, n)
             return res
         print(num_of_numbers_lte_x(2))
