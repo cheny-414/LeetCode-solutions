@@ -5,9 +5,8 @@ class Solution:
         best = 0
         for right in range(len(nums)):
             counter[nums[right]] += 1
-            if counter[nums[right]] > k:
-                while left <= right and counter[nums[right]] > k:
-                    counter[nums[left]] -= 1
-                    left += 1
+            while left <= right and counter[nums[right]] > k:
+                counter[nums[left]] -= 1
+                left += 1
             best = max(best, right - left + 1)
         return best
