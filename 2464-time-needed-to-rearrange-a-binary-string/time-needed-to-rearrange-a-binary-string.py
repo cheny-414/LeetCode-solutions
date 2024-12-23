@@ -3,15 +3,15 @@ class Solution:
         count = s.count('1')
         blockers = 0
         timeNeeded = 0
-        curr = -1
+        correctIndex = -1
         for i in range(len(s)):
             if s[i] == '1':
-                curr += 1
+                correctIndex += 1
                 time = 0
-                if i == curr:
+                if i == correctIndex:
                     blockers = max(0, blockers - 1)
                 else:
-                    time = i - curr + blockers
+                    time = i - correctIndex + blockers
                     blockers += 1
                 timeNeeded = max(timeNeeded, time)
             else:
