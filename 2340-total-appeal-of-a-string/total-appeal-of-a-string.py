@@ -6,7 +6,10 @@ class Solution:
         total = 0
         for i in range(len(s)):
             char_idx = ord(s[i]) - ord('a')
-            dp = dp + (i - last_pos[char_idx])
+            if last_pos[char_idx] == -1:
+                dp = dp + 1 + i
+            else:
+                dp = dp + (i - last_pos[char_idx])
             last_pos[ord(s[i]) - ord('a')] = i
             total += dp
         return total
