@@ -5,8 +5,7 @@ class Solution:
         longest = 0
         for right in range(len(s)):
             freq[ord(s[right]) - ord('A')] += 1
-            mostFreq = max(freq)
-            opsNeeded = (right - left + 1) - mostFreq
+            opsNeeded = (right - left + 1) - max(freq)
             while opsNeeded > k:
                 freq[ord(s[left]) - ord('A')] -= 1
                 left += 1
