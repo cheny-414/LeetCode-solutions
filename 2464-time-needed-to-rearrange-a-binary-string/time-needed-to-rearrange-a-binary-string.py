@@ -1,16 +1,19 @@
 class Solution:
     def secondsToRemoveOccurrences(self, s: str) -> int:
-        changed = True
-        nums = list(s)
-        days = 0
-        while changed:
-            changed = False
-            i = 1
-            while i < len(s):
-                if nums[i] == '1' and nums[i - 1] == '0': 
-                    nums[i], nums[i - 1] = nums[i - 1], nums[i]
-                    i += 1
-                    changed = True
-                i += 1
-            days += changed
-        return days
+        count = s.count('1')
+        blockers = 0
+        timeNeeded = 0
+        curr = -1
+        for i in range(len(s)):
+            if s[i] == '1':
+                curr += 1
+                time = 0
+                if i == curr:
+                    blockers = max(0, blockers - 1)
+                else:
+                    time = i - curr + blockers
+                    blockers += 1
+                timeNeeded = max(timeNeeded, time)
+            else:
+                blockers = max(0, blockers - 1)
+        return timeNeeded
