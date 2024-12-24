@@ -5,7 +5,7 @@ class Solution:
             return False
         def canInterleave(index, index1, index2):
             if index >= len(s3):
-                return index1 == len(s1) and index2 == len(s2)
+                return True
             if index1 >= len(s1):
                 return s2[index2:] == s3[index:]
             if index2 >= len(s2):
