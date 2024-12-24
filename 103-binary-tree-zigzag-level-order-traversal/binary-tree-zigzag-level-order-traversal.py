@@ -21,8 +21,9 @@ class Solution:
                     q.append(curr.left)
                 if curr.right:
                     q.append(curr.right)
-            res.append(currLevel)
+            
             if level % 2 == 1:
                 currLevel.reverse()
+            res.append(currLevel)
             level += 1
         return res
