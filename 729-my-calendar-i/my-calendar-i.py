@@ -9,14 +9,10 @@ class MyCalendar:
             self.intervals.append(interval)
             return True
         index = bisect_left(self.intervals, interval)
-        if index > 0:
-            last = self.intervals[index - 1]
-            if last[1] > startTime:
-                return False
-        if index < len(self.intervals):
-            next = self.intervals[index]
-            if next[0] < endTime:
-                return False
+        if index > 0 and self.intervals[index - 1][1] > startTime:
+            return False
+        if index < len(self.intervals) and self.intervals[index][0] < endTime:
+            return False
         self.intervals.insert(index, interval)
         return True
 
