@@ -8,11 +8,11 @@ class ExamRoom:
         if not self.students:
             self.students.append(0)
             return 0
-        # elif len(self.students) == 1:
-        #     bestSeat = self.n - 1 if self.students[0] <= self.n // 2 else 0
-        #     index = bisect_left(self.students, bestSeat)
-        #     self.students.insert(index, bestSeat)
-        #     return bestSeat
+        elif len(self.students) == 1:
+            bestSeat = self.n - 1 if self.students[0] <= self.n // 2 else 0
+            index = bisect_left(self.students, bestSeat)
+            self.students.insert(index, bestSeat)
+            return bestSeat
         else:
             maxDistance = self.students[0]
             bestSeat = 0
