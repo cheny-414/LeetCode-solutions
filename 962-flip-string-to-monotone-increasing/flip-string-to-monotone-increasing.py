@@ -14,6 +14,5 @@ class Solution:
             flips = min(flips, (1 if s[index] == '0' else 0) + helper(index + 1, 1))
             dp[index][requireOne] = flips
             return flips
-        a = min(helper(0, 0), helper(0, 1))
-        return a
+        return min(helper(0, 0), helper(0, 1))
             
