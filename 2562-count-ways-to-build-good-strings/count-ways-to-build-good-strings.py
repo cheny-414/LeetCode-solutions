@@ -4,8 +4,8 @@ class Solution:
         def helper(index):
             if index > high - 1:
                 return 0
-            if index == high - 1:
-                return 1
+            # if index == high - 1:
+            #     return 1
             if index in dp:
                 return dp[index]
             ways = 0
