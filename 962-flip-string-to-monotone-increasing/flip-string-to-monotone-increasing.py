@@ -9,7 +9,7 @@ class Solution:
             flips = inf
             if not requireOne:
                 #flip to zero
-                flips = min(flips, (1 if s[index] == '1' else 0) + min(helper(index + 1, 0), helper(index + 1, 1)))
+                flips = min(flips, (1 if s[index] == '1' else 0) + helper(index + 1, 0))
             #flip to one
             flips = min(flips, (1 if s[index] == '0' else 0) + helper(index + 1, 1))
             dp[index][requireOne] = flips
