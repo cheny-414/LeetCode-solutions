@@ -6,9 +6,7 @@ class Solution:
         for i in range(n - 1):
             p = heappop(nums)
             for prime in primes:
-                #if p * prime not in numsSet:
-                heappush(nums, p * prime)
-                #numsSet.add(p * prime)
-                if p % prime == 0:
-                    break
+                if p * prime not in numsSet:
+                    heappush(nums, p * prime)
+                    numsSet.add(p * prime)
         return p
