@@ -9,6 +9,6 @@ class Solution:
                 diff = i - old_index
                 answer[old_index] = diff
             stack.append(i)
-        while stack:
-            answer[stack.pop()] = 0
+        # while stack:
+        #     answer[stack.pop()] = 0
         return answer
