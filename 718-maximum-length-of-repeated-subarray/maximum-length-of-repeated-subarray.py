@@ -17,6 +17,6 @@ class Solution:
         for i in range(len(nums1)):
             for j in range(len(nums2)):
                 if nums1[i] == nums2[j]:
-                    cache[i][j] = cache[i - 1][j - 1] + 1
+                    cache[i + 1][j + 1] = cache[i][j] + 1
         return max(max(row) for row in cache)
                 
